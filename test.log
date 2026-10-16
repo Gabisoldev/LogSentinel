@@ -1,0 +1,20 @@
+﻿[2024-01-15 10:23:45] INFO: Sistema iniciado com sucesso
+[2024-01-15 10:23:50] INFO: Carregando configurações de /etc/app/config.yaml
+[2024-01-15 10:23:52] ERROR: Connection refused to database 10.0.0.5:5432
+[2024-01-15 10:23:55] WARNING: Retry attempt 1 for user 42
+[2024-01-15 10:23:58] WARNING: Retry attempt 2 for user 42
+[2024-01-15 10:24:00] ERROR: Connection refused to database 10.0.0.6:5432
+[2024-01-15 10:24:05] ERROR: Timeout after 30s on API /users
+2024-01-15 10:24:10 CRITICAL Out of memory: killed process 1234
+[2024-01-15 10:24:12] INFO: Process restarted by watchdog
+[2024-01-15 10:24:15] WARNING: Disk usage at 92% on /dev/sda1
+[2024-01-15 10:24:20] ERROR: Timeout after 60s on API /orders
+[2024-01-15 10:24:25] ERROR: Timeout after 90s on API /payments
+[2024-01-15 10:24:30] CRITICAL: Connection refused to database 10.0.0.5:5432
+[2024-01-15 10:24:35] ERROR: Unauthorized access attempt from 192.168.1.99
+[2024-01-15 10:24:40] INFO: Health check ok
+[2024-01-15 10:24:45] ERROR: Segfault in worker process 8842
+[2024-01-15 10:24:50] WARNING: Memory usage at 87%
+[2024-01-15 10:24:55] ERROR: Failed to write to disk /var/log/app
+[2024-01-15 10:25:00] INFO: Cache cleared
+[2024-01-15 10:25:05] ERROR: Deadlock detected in transaction 9921

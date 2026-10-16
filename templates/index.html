@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="LogSentinel — Análise e monitoramento de arquivos de log."
+  >
+
+  <title>LogSentinel | Análise de Logs</title>
+
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <header>
+    <div>
+      <h1>LogSentinel</h1>
+      <p>Análise e monitoramento de logs do sistema</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="upload-card" aria-label="Importar arquivo de log">
+      <div>
+        <h2>Importar arquivo</h2>
+        <p>Selecione um arquivo de log para iniciar a análise.</p>
+      </div>
+
+      <input
+        type="file"
+        id="fileInput"
+        accept=".log,.txt"
+        aria-label="Selecionar arquivo de log"
+      >
+
+      <button type="button" onclick="uploadFile()">
+        Analisar arquivo
+      </button>
+
+      <span id="uploadStatus" role="status" aria-live="polite"></span>
+    </section>
+
+    <section class="kpis" aria-label="Resumo dos eventos">
+      <div class="kpi critical">
+        <small>Eventos críticos</small>
+        <span id="kpiCritical">0</span>
+      </div>
+
+      <div class="kpi error">
+        <small>Erros</small>
+        <span id="kpiError">0</span>
+      </div>
+
+      <div class="kpi warning">
+        <small>Avisos</small>
+        <span id="kpiWarning">0</span>
+      </div>
+
+      <div class="kpi info">
+        <small>Total de eventos</small>
+        <span id="kpiInfo">0</span>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Visualização dos dados">
+      <div class="card">
+        <h2>Eventos por nível</h2>
+        <div class="chart-container">
+          <canvas id="levelChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Distribuição temporal</h2>
+        <div class="chart-container">
+          <canvas id="timelineChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Eventos recorrentes</h2>
+      <p class="section-description">
+        Agrupamento de mensagens por assinatura.
+      </p>
+
+      <div id="topGroups" class="groups"></div>
+    </section>
+
+    <section class="card">
+      <h2>Histórico de análises</h2>
+
+      <div class="table-container">
+        <table id="filesTable">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Arquivo</th>
+              <th scope="col">Data da análise</th>
+              <th scope="col">Erros</th>
+              <th scope="col">Avisos</th>
+              <th scope="col">Críticos</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Registros de eventos</h2>
+      <p class="section-description">
+        Consulte, filtre e exporte os eventos identificados nos logs.
+      </p>
+
+      <div class="filters">
+        <select id="filterLevel" aria-label="Filtrar por nível">
+          <option value="ALL">Todos os níveis</option>
+          <option value="CRITICAL">Crítico</option>
+          <option value="ERROR">Erro</option>
+          <option value="WARNING">Aviso</option>
+          <option value="INFO">Informação</option>
+        </select>
+
+        <input
+          id="filterSearch"
+          type="search"
+          placeholder="Pesquisar mensagem..."
+          aria-label="Pesquisar eventos por mensagem"
+        >
+
+        <button type="button" onclick="loadEvents()">
+          Aplicar filtros
+        </button>
+
+        <button
+          type="button"
+          onclick="exportCSV()"
+          class="secondary-button"
+        >
+          Exportar CSV
+        </button>
+      </div>
+
+      <div class="table-container">
+        <table id="eventsTable">
+          <thead>
+            <tr>
+              <th scope="col">Horário</th>
+              <th scope="col">Nível</th>
+              <th scope="col">Mensagem</th>
+            </tr>
+          </thead>
+
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>LogSentinel · Análise de logs</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
